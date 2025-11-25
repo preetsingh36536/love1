@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>For Tannu ♥</title>
+
+<style>
+  :root{
+    --bg: #1a0f24;
+    --card: #241330;
+    --accent1: #ff74d4;
+    --accent2: #b36bff;
+    --heartGlow: rgba(255,120,210,0.45);
+    --textSoft: #e3d9f4;
+  }
+
+  html,body{
+    height:100%; margin:0; font-family: "Inter", system-ui;
+    color:white; background: var(--bg);
+  }
+
+  body{
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,100,200,0.20), transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(170,90,255,0.15), transparent 60%),
+      var(--bg);
+  }
+
+  .card{
+    width:min(900px,92vw);
+    background: var(--card);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 0 40px rgba(0,0,0,0.45);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* floating hearts */
+  .heartFloat{
+    position:absolute;
+    color:var(--accent1);
+    font-size:26px;
+    animation: floatUp 6s linear infinite;
+    opacity:0.8;
+  }
+
+  @keyframes floatUp{
+    0%{ transform:translateY(40px) scale(0.6); opacity:0; }
+    30%{ opacity:1; }
+    100%{ transform:translateY(-260px) scale(1.2); opacity:0; }
+  }
+
+  h1{ margin:0 0 8px 0; font-size:26px; color:white; }
+  p.lead{ color:var(--textSoft); margin:0; }
+
+  .message{
+    margin-top:22px;
+    min-height:150px;
+    font-size:18px;
+    color:white;
+    line-height:1.6;
+    white-space:pre-wrap;
+  }
+
+  .type{ font-weight:600; color:#ffeaff; }
+
+  .cta{ margin-top:25px; display:flex; gap:12px; }
+
+  .btn{
+    padding:10px 16px; border-radius:10px; border:0; cursor:pointer;
+    font-size:16px; color:white;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    box-shadow:0 6px 18px rgba(255,120,210,0.2);
+  }
+
+  .btn.secondary{
+    background:transparent; color:#d4bdf4;
+    border:1px solid rgba(255,255,255,0.1);
+  }
+
+  #acceptBox{
+    margin-top:20px; padding:15px; border-radius:12px;
+    background:rgba(255,255,255,0.05);
+    display:none;
+  }
+
+  canvas.confetti{
+    position:absolute; inset:0; pointer-events:none; z-index:3;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <!-- random hearts -->
+  <div class="heartFloat" style="left:10%;">💗</div>
+  <div class="heartFloat" style="left:30%; animation-delay:1.5s;">💜</div>
+  <div class="heartFloat" style="left:70%; animation-delay:0.8s;">💖</div>
+
+  <canvas class="confetti" id="confetti"></canvas>
+
+  <h1>Tannu, i made this for you ♥</h1>
+  <p class="lead">Click Read… and let it flow</p>
+
+  <div class="message">
+    <span class="type" id="typewriter"></span>
+  </div>
+
+  <div class="cta">
+    <button class="btn" id="readBtn">Read</button>
+    <button class="btn secondary" id="musicBtn">Play Midnight Call</button>
+  </div>
+
+  <div id="acceptBox">
+    <div id="result"></div>
+  </div>
+</div>
+
+<script>
+/* message */
+const messageText = [
+  "Hey Tannu,\n",
+  "I wanted to tell you something that keeps sitting in my heart. Its kinda simple but kinda big too.\n\n",
+  "You make my days softer and my nights calm. Honestly you’re my fav person ever.\n\n",
+  "So here’s me, in a small piece of code asking:\n\n",
+  "Will you be mine Tannu, Better than before? ❤️"
+].join('');
+
+const typeTarget = document.getElementById('typewriter');
+const readBtn = document.getElementById('readBtn');
+const musicBtn = document.getElementById('musicBtn');
+const acceptBox = document.getElementById('acceptBox');
+const result = document.getElementById('result');
+
+/* typing effect */
+function typeWrite(text, el, speed=28){
+  let i = 0;
+  el.textContent = "";
+  return new Promise(res=>{
+    const tick = setInterval(()=>{
+      el.textContent += text[i] || "";
+      i++;
+      if(i >= text.length){
+        clearInterval(tick);
+        res();
+      }
+    }, speed);
+  });
+}
+
+readBtn.onclick = async ()=>{
+  readBtn.disabled = true;
+  await typeWrite(messageText, typeTarget);
+
+  acceptBox.style.display = "block";
+  result.innerHTML = `
+    <button class="btn" id="yesBtn">Yes</button>
+    <button class="btn secondary" id="noBtn">Not yet</button>
+  `;
+
+  document.getElementById('yesBtn').onclick = ()=>{
+    result.innerHTML = "<h3>You said YES ❤️</h3><p>I love you so much.</p>";
+    fireConfetti();
+  };
+
+  document.getElementById('noBtn').onclick = ()=>{
+    result.innerHTML = "<h3>Its okay ♥</h3><p>We try again later.</p>";
+  };
+};
+
+/* music */
+musicBtn.onclick = ()=>{
+  const audioUrl = "file:///C:/Users/PREET%20SINGH/Downloads/Harkirat%20Sangha%20%20Starboy%20-%20Midnight%20Call%20(Lyrics)%20-%20LastSongOnly.mp3"; // paste mp3 link here
+  if(audioUrl.includes("HERE")){
+    alert("Paste the direct mp3 link inside the code first bro :)");
+    return;
+  }
+  const a = new Audio(audioUrl);
+  a.play();
+};
+
+/* Confetti */
+(function(){
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  function resize(){
+    W = canvas.width = card.clientWidth;
+    H = canvas.height = card.clientHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  let particles = [];
+  function rand(a,b){ return Math.random()*(b-a)+a; }
+
+  window.fireConfetti = function(){
+    for(let i=0;i<100;i++){
+      particles.push({
+        x:W/2, y:H/2,
+        vx:rand(-6,6),
+        vy:rand(-10,-4),
+        size:rand(6,12),
+        color:`hsl(${Math.random()*360},80%,60%)`,
+        ttl:rand(60,120)
+      });
+    }
+    update();
+  };
+
+  function update(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach((p,i)=>{
+      p.ttl--;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.3;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x,p.y,p.size,p.size);
+      if(p.ttl<=0 || p.y>H+40) particles.splice(i,1);
+    });
+    if(particles.length>0) requestAnimationFrame(update);
+  }
+})();
+</script>
+</body>
+</html>
