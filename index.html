@@ -1,233 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>For Tannu ♥</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Tanishka</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff8ec7, #b38bff);
+      overflow-x: hidden;
+      color: white;
+      text-align: center;
+    }
 
-<style>
-  :root{
-    --bg: #1a0f24;
-    --card: #241330;
-    --accent1: #ff74d4;
-    --accent2: #b36bff;
-    --heartGlow: rgba(255,120,210,0.45);
-    --textSoft: #e3d9f4;
-  }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-  html,body{
-    height:100%; margin:0; font-family: "Inter", system-ui;
-    color:white; background: var(--bg);
-  }
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.6);
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+    }
 
-  body{
-    display:flex; align-items:center; justify-content:center;
-    padding:20px;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(255,100,200,0.20), transparent 60%),
-      radial-gradient(circle at 80% 80%, rgba(170,90,255,0.15), transparent 60%),
-      var(--bg);
-  }
+    @keyframes floatUp {
+      0% {transform: translateY(100vh) scale(0.6); opacity: 0;}
+      30% {opacity: 1;}
+      100% {transform: translateY(-10vh) scale(1); opacity: 0;}
+    }
 
-  .card{
-    width:min(900px,92vw);
-    background: var(--card);
-    border-radius:25px;
-    padding:30px;
-    box-shadow:0 0 40px rgba(0,0,0,0.45);
-    position:relative;
-    overflow:hidden;
-  }
+    .container {
+      position: relative;
+      z-index: 2;
+      padding-top: 40px;
+    }
 
-  /* floating hearts */
-  .heartFloat{
-    position:absolute;
-    color:var(--accent1);
-    font-size:26px;
-    animation: floatUp 6s linear infinite;
-    opacity:0.8;
-  }
+    .slideshow {
+      width: 85%;
+      max-width: 420px;
+      margin: 20px auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
 
-  @keyframes floatUp{
-    0%{ transform:translateY(40px) scale(0.6); opacity:0; }
-    30%{ opacity:1; }
-    100%{ transform:translateY(-260px) scale(1.2); opacity:0; }
-  }
+    .slideshow img {
+      width: 100%;
+      display: none;
+    }
 
-  h1{ margin:0 0 8px 0; font-size:26px; color:white; }
-  p.lead{ color:var(--textSoft); margin:0; }
+    .text-box {
+      width: 85%;
+      max-width: 500px;
+      margin: 25px auto;
+      background: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      font-size: 17px;
+      line-height: 1.5;
+    }
 
-  .message{
-    margin-top:22px;
-    min-height:150px;
-    font-size:18px;
-    color:white;
-    line-height:1.6;
-    white-space:pre-wrap;
-  }
-
-  .type{ font-weight:600; color:#ffeaff; }
-
-  .cta{ margin-top:25px; display:flex; gap:12px; }
-
-  .btn{
-    padding:10px 16px; border-radius:10px; border:0; cursor:pointer;
-    font-size:16px; color:white;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    box-shadow:0 6px 18px rgba(255,120,210,0.2);
-  }
-
-  .btn.secondary{
-    background:transparent; color:#d4bdf4;
-    border:1px solid rgba(255,255,255,0.1);
-  }
-
-  #acceptBox{
-    margin-top:20px; padding:15px; border-radius:12px;
-    background:rgba(255,255,255,0.05);
-    display:none;
-  }
-
-  canvas.confetti{
-    position:absolute; inset:0; pointer-events:none; z-index:3;
-  }
-
-</style>
+    audio {margin-top: 20px;}
+  </style>
 </head>
 <body>
+  <div class="hearts" id="hearts"></div>
 
-<div class="card" id="card">
-  <!-- random hearts -->
-  <div class="heartFloat" style="left:10%;">💗</div>
-  <div class="heartFloat" style="left:30%; animation-delay:1.5s;">💜</div>
-  <div class="heartFloat" style="left:70%; animation-delay:0.8s;">💖</div>
+  <div class="container">
+    <h1>For Tanishka</h1>
 
-  <canvas class="confetti" id="confetti"></canvas>
+    <div class="slideshow" id="slideshow">
+      <img src="/mnt/data/ebe8a66c-3421-4f2d-882d-d35fb97d09d9.png" />
+      <img src="/mnt/data/Screenshot 2025-11-25 163903.png" />
+      <img src="/mnt/data/Screenshot 2025-11-25 163842.png" />
+    </div>
 
-  <h1>Tannu, i made this for you ♥</h1>
-  <p class="lead">Click Read… and let it flow</p>
+    <div class="text-box">
+      My dear Tanishka, I am really sorry about what I said about your injury. I feel bad for it and I hope you forgive me. I know I hurt you and I never meant to. I feel guilty and I just want you to be back as the lovely part of my life that we lost 3 years ago.
+    </div>
 
-  <div class="message">
-    <span class="type" id="typewriter"></span>
+    <audio controls autoplay>
+      <source src="/mnt/data/Harkirat Sangha  Starboy - Midnight Call (Lyrics) - LastSongOnly.mp3" type="audio/mpeg" />
+    </audio>
   </div>
 
-  <div class="cta">
-    <button class="btn" id="readBtn">Read</button>
-    <button class="btn secondary" id="musicBtn">Play Midnight Call</button>
-  </div>
-
-  <div id="acceptBox">
-    <div id="result"></div>
-  </div>
-</div>
-
-<script>
-/* message */
-const messageText = [
-  "Hey Tannu,\n",
-  "I wanted to tell you something that keeps sitting in my heart. Its kinda simple but kinda big too.\n\n",
-  "You make my days softer and my nights calm. Honestly you’re my fav person ever.\n\n",
-  "So here’s me, in a small piece of code asking:\n\n",
-  "Will you be mine Tannu, Better than before? ❤️"
-].join('');
-
-const typeTarget = document.getElementById('typewriter');
-const readBtn = document.getElementById('readBtn');
-const musicBtn = document.getElementById('musicBtn');
-const acceptBox = document.getElementById('acceptBox');
-const result = document.getElementById('result');
-
-/* typing effect */
-function typeWrite(text, el, speed=28){
-  let i = 0;
-  el.textContent = "";
-  return new Promise(res=>{
-    const tick = setInterval(()=>{
-      el.textContent += text[i] || "";
-      i++;
-      if(i >= text.length){
-        clearInterval(tick);
-        res();
-      }
-    }, speed);
-  });
-}
-
-readBtn.onclick = async ()=>{
-  readBtn.disabled = true;
-  await typeWrite(messageText, typeTarget);
-
-  acceptBox.style.display = "block";
-  result.innerHTML = `
-    <button class="btn" id="yesBtn">Yes</button>
-    <button class="btn secondary" id="noBtn">Not yet</button>
-  `;
-
-  document.getElementById('yesBtn').onclick = ()=>{
-    result.innerHTML = "<h3>You said YES ❤️</h3><p>I love you so much.</p>";
-    fireConfetti();
-  };
-
-  document.getElementById('noBtn').onclick = ()=>{
-    result.innerHTML = "<h3>Its okay ♥</h3><p>We try again later.</p>";
-  };
-};
-
-/* music */
-musicBtn.onclick = ()=>{
-  const audioUrl = "file:///C:/Users/PREET%20SINGH/Downloads/Harkirat%20Sangha%20%20Starboy%20-%20Midnight%20Call%20(Lyrics)%20-%20LastSongOnly.mp3"; // paste mp3 link here
-  if(audioUrl.includes("HERE")){
-    alert("Paste the direct mp3 link inside the code first bro :)");
-    return;
-  }
-  const a = new Audio(audioUrl);
-  a.play();
-};
-
-/* Confetti */
-(function(){
-  const canvas = document.getElementById('confetti');
-  const ctx = canvas.getContext('2d');
-  let W, H;
-
-  function resize(){
-    W = canvas.width = card.clientWidth;
-    H = canvas.height = card.clientHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  let particles = [];
-  function rand(a,b){ return Math.random()*(b-a)+a; }
-
-  window.fireConfetti = function(){
-    for(let i=0;i<100;i++){
-      particles.push({
-        x:W/2, y:H/2,
-        vx:rand(-6,6),
-        vy:rand(-10,-4),
-        size:rand(6,12),
-        color:`hsl(${Math.random()*360},80%,60%)`,
-        ttl:rand(60,120)
-      });
+  <script>
+    const imgs = document.querySelectorAll('#slideshow img');
+    let i = 0;
+    function cycle(){
+      imgs.forEach(img => img.style.display = 'none');
+      imgs[i].style.display = 'block';
+      i = (i+1) % imgs.length;
     }
-    update();
-  };
+    cycle();
+    setInterval(cycle, 2500);
 
-  function update(){
-    ctx.clearRect(0,0,W,H);
-    particles.forEach((p,i)=>{
-      p.ttl--;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.3;
-      ctx.fillStyle = p.color;
-      ctx.fillRect(p.x,p.y,p.size,p.size);
-      if(p.ttl<=0 || p.y>H+40) particles.splice(i,1);
-    });
-    if(particles.length>0) requestAnimationFrame(update);
-  }
-})();
-</script>
+    function spawnHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.innerHTML = '❤';
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.fontSize = (20 + Math.random()*30) + 'px';
+      h.style.animationDuration = (4 + Math.random()*4) + 's';
+      document.getElementById('hearts').appendChild(h);
+      setTimeout(()=>h.remove(), 8000);
+    }
+    setInterval(spawnHeart, 400);
+  </script>
 </body>
 </html>
