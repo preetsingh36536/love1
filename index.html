@@ -76,9 +76,18 @@
 
     .proposal {
       margin-top: 25px;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
       color: #fff;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); color: #fff; }
+      25% { transform: scale(1.1); color: #ffeb3b; }
+      50% { transform: scale(1); color: #fff; }
+      75% { transform: scale(1.1); color: #ffeb3b; }
+      100% { transform: scale(1); color: #fff; }
     }
   </style>
 </head>
@@ -92,7 +101,6 @@
     <div class="slideshow" id="slideshow">
       <img src="https://raw.githubusercontent.com/preetsingh36536/love1/main/Screenshot%202025-11-25%20163842.png" alt="Slide 1" />
       <img src="https://raw.githubusercontent.com/preetsingh36536/love1/main/Screenshot%202025-11-25%20163903.png" alt="Slide 2" />
-      <!-- Add more if needed like third image -->
     </div>
 
     <div class="text-box">
@@ -124,7 +132,7 @@ Will you be mine, Tannu... better than before? ❤️
     function cycle(){
       imgs.forEach(img => img.style.display = 'none');
       imgs[i].style.display = 'block';
-      i = (i + 1) % imgs.length;
+      i = (i+1) % imgs.length;
     }
     cycle();
     setInterval(cycle, 2500);
