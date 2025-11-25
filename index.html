@@ -14,7 +14,6 @@
       color: white;
       text-align: center;
     }
-
     .hearts {
       position: fixed;
       top: 0;
@@ -25,26 +24,22 @@
       overflow: hidden;
       z-index: 0;
     }
-
     .heart {
       position: absolute;
       color: rgba(255,255,255,0.6);
       font-size: 20px;
       animation: floatUp 6s linear infinite;
     }
-
     @keyframes floatUp {
       0% {transform: translateY(100vh) scale(0.6); opacity: 0;}
       30% {opacity: 1;}
       100% {transform: translateY(-10vh) scale(1); opacity: 0;}
     }
-
     .container {
       position: relative;
       z-index: 2;
       padding-top: 40px;
     }
-
     .slideshow {
       width: 85%;
       max-width: 420px;
@@ -53,12 +48,10 @@
       overflow: hidden;
       box-shadow: 0 0 25px rgba(0,0,0,0.4);
     }
-
     .slideshow img {
       width: 100%;
       display: none;
     }
-
     .text-box {
       width: 85%;
       max-width: 500px;
@@ -71,28 +64,24 @@
       font-size: 17px;
       line-height: 1.5;
     }
-
-    audio {margin-top: 20px;}
+    audio { margin-top: 20px; }
   </style>
 </head>
 <body>
   <div class="hearts" id="hearts"></div>
-
   <div class="container">
     <h1>For Tanishka</h1>
-
     <div class="slideshow" id="slideshow">
-      <img src="/mnt/data/ebe8a66c-3421-4f2d-882d-d35fb97d09d9.png" />
-      <img src="/mnt/data/Screenshot 2025-11-25 163903.png" />
-      <img src="/mnt/data/Screenshot 2025-11-25 163842.png" />
+      <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/Screenshot%202025-11-25%20163842.png" alt="Image 1" />
+      <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/Screenshot%202025-11-25%20163903.png" alt="Image 2" />
+      <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/ebe8a66c-3421-4f2d-882d-d35fb97d09d9.png" alt="Image 3" />
     </div>
-
     <div class="text-box">
       My dear Tanishka, I am really sorry about what I said about your injury. I feel bad for it and I hope you forgive me. I know I hurt you and I never meant to. I feel guilty and I just want you to be back as the lovely part of my life that we lost 3 years ago.
     </div>
-
     <audio controls autoplay>
-      <source src="/mnt/data/Harkirat Sangha  Starboy - Midnight Call (Lyrics) - LastSongOnly.mp3" type="audio/mpeg" />
+      <source src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/Harkirat%20Sangha%20Starboy%20-%20Midnight%20Call%20(Lyrics)%20-%20LastSongOnly.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
     </audio>
   </div>
 
@@ -102,7 +91,7 @@
     function cycle(){
       imgs.forEach(img => img.style.display = 'none');
       imgs[i].style.display = 'block';
-      i = (i+1) % imgs.length;
+      i = (i + 1) % imgs.length;
     }
     cycle();
     setInterval(cycle, 2500);
@@ -111,11 +100,11 @@
       const h = document.createElement('div');
       h.className = 'heart';
       h.innerHTML = '❤';
-      h.style.left = Math.random()*100 + 'vw';
-      h.style.fontSize = (20 + Math.random()*30) + 'px';
-      h.style.animationDuration = (4 + Math.random()*4) + 's';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (20 + Math.random() * 30) + 'px';
+      h.style.animationDuration = (4 + Math.random() * 4) + 's';
       document.getElementById('hearts').appendChild(h);
-      setTimeout(()=>h.remove(), 8000);
+      setTimeout(() => h.remove(), 8000);
     }
     setInterval(spawnHeart, 400);
   </script>
